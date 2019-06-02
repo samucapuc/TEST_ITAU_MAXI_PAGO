@@ -17,9 +17,10 @@ public  class AppServletContextListener implements ServletContextListener {
 		City city2 = new City(2L, "Belo Horizonte", -19.8157, -43.9542);
 		City city3 = new City(3L, "Brasília", -15.7801, -47.9292);
 		City city4 = new City(4L, "Salvador", -12.9704, -38.5124);
+		City city5 = new City(5L, "Porto Alegre", -30.0277, -51.2287);
 		CityService service = new CityService();
 		service.deleteAllCities();
-		service.insertCities(Arrays.asList(city1,city2,city3,city4));
+		service.insertCities(Arrays.asList(city1,city2,city3,city4,city5));
 		
 	}
 

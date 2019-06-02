@@ -12,39 +12,38 @@ import br.com.samuel.exceptions.ConnectionErrorException;
 
 /**
  * @author Samuel Oliveira Chaves
- * @since 30-05-2019
+ * @since 30-05-2019 
  * Pattern Factory and Singleton
  */
 public class ConnectionFactory {
 	private static Connection connection;
 	private static Log log = LogFactory.getLog(ConnectionFactory.class);
-	private static final String SCHEMA_DEFAULT="maxPago";
-	private static final Integer PORT=3306;
+	private static final String SCHEMA_DEFAULT = "maxipago";
 
 	public static Connection getConection() {
-		createConnection(PORT,SCHEMA_DEFAULT);
+		createConnection(SCHEMA_DEFAULT);
 		return connection;
 	}
-	public static Connection getConection(Integer port,String schema) {
-		createConnection(port,schema);
+
+	public static Connection getConection(String schema) {
+		createConnection(schema);
 		return connection;
 	}
-	
-	public static void createConnection(Integer port,String schema) {
-	    try {
-	        Class.forName("com.mysql.cj.jdbc.Driver");
-	        //String url = "jdbc:mysql:127.0.0.1:"+port+"/"+schema;
-	        String url = "jdbc:mysql://localhost/"+schema;
-	        String username = "root"; 
-	        String password = StringUtils.EMPTY;
-	        connection = DriverManager.getConnection(url, username, password);
-	    } catch (ClassNotFoundException e) {   
-	    	log.error("Driver com.mysql.jdbc.Driver not found.");
-	        throw new ConnectionErrorException("Driver com.mysql.jdbc.Driver not found.");
-	    } catch (SQLException e) {
-	    	log.error("Unable to connect to database.");
-	    	 throw new ConnectionErrorException("Unable to connect to database.");
-	    }
+
+	public static void createConnection(String schema) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			String url = "jdbc:mysql://localhost/" + schema;
+			String username = "root";
+			String password = StringUtils.EMPTY;
+			connection = DriverManager.getConnection(url, username, password);
+		} catch (ClassNotFoundException e) {
+			log.error("Driver com.mysql.jdbc.Driver not found.");
+			throw new ConnectionErrorException("Driver com.mysql.jdbc.Driver not found.");
+		} catch (SQLException e) {
+			log.error("Unable to connect to database.");
+			throw new ConnectionErrorException("Unable to connect to database.");
+		}
 	}
-	
+
 }

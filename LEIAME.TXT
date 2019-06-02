@@ -1,1 +1,29 @@
-Portugues
+Teste realizado para o MaxiPago
+Teste para vaga de desenvolvedor
+Por Samuel Oliveira Chaves
+01/06/2019
+
+Instruções para build:
+1. Certifique-se que o JAVA 8 esteja instalado;
+2. Foi utilizado o tomcat 8.5;
+3. Executar os scripts antes da execução da aplicação;
+4. Certifique-se que a aplicação esteja apontando para o JDK 8;
+5. Corra o maven install para gerar o arquivo .war
+6. Remove a versão na nomenclatura (nome) do .war
+
+
+Scripts:
+CREATE DATABASE maxipago;
+CREATE TABLE CITY (
+	ID BIGINT NOT NULL,
+	NAME VARCHAR (100) NOT NULL,
+	LATITUDE DOUBLE NOT NULL,
+	LONGITUDE DOUBLE NOT NULL,
+	PRIMARY KEY (ID),
+	INDEX IDX_CITY_NAME (NAME (100)));
+
+Método de calculo de distância
+O método utilizado foi o **Vicenty** que a fórmula baseia-se no fato da terra ser um [Esferóides Oblatos](https://en.wikipedia.org/wiki/Spheroid#Oblate_spheroids), diferente de outras fórmulas que se baseiam na terra como esféras ou linear(nesse caso, ignorando relevos). Portanto, o método Vicenty é mais preciso e o erro de cálculo fica entre 0,5 e 1 metro. Embora esse método seja mais lento que os demais, ele é amplamente utilizado para o elipsóide terrestre, utilizando a norma de GPS WGS-84.
+
+Método de combinação
+Foi utilizado um algoritimo simples onde a mesma função é executada várias vezes (recursividade), armazenando a cidade da posição (**I**) da lista de cidades em uma array temporário e sempre que o index (que iniciou com valor zero, mas é incrementado sempre que o array temporário foi preenchido) for do tamanho do array temporário, o algoritimo inclui na lista de combinações. Esse algoritmo utiliza força bruta com desempenho O(n2) para combinar, mas por outro lado é escalável, podendo ser utilizado para combinar diversas cidades e combinações.

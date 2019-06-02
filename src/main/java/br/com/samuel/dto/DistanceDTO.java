@@ -1,5 +1,8 @@
 package br.com.samuel.dto;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -28,7 +31,7 @@ public class DistanceDTO {
 		this.citySource = citySource;
 		this.cityTarget = cityTarget;
 		this.metrics = metrics;
-		this.distance = distance;
+		this.distance = (distance !=null ? (((BigDecimal)new BigDecimal(distance).setScale(3, RoundingMode.HALF_UP)).doubleValue()) : null);
 	}
 	
 	public City getCitySource() {
@@ -56,6 +59,5 @@ public class DistanceDTO {
 	public void setDistance(Double distance) {
 		this.distance = distance;
 	}
-
 	
 }
