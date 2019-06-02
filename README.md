@@ -24,7 +24,7 @@ CREATE TABLE CITY (
 ```
 
 ### Distance calculation method
-The method used was the **Vicenty** that the formula is based on the fact that the earth is an [Oblatos Spheroids] (https://en.wikipedia.org/wiki/Spheroid#Oblate_spheroids), different from other formulas that are base on the earth as spheres or linear (in this case, ignoring reliefs). Therefore, the Vicenty method is more accurate and the calculation error is between 0.5 and 1 meter. Although this method is slower than the others, it is widely used for the terrestrial ellipsoid using the **WGS-84** **GPS** standard.
+The method used was the **Vicenty** that the formula is based on the fact that the earth is an **Oblatos Spheroids** (https://en.wikipedia.org/wiki/Spheroid#Oblate_spheroids), different from other formulas that are base on the earth as spheres or linear (in this case, ignoring reliefs). Therefore, the Vicenty method is more accurate and the calculation error is between 0.5 and 1 meter. Although this method is slower than the others, it is widely used for the terrestrial ellipsoid using the **WGS-84** **GPS** standard.
 
 ### Combination Method
 We used a simple algorithm where the same function is executed several times (recursion), storing the city of the position (**I**) of the list of cities in a temporary array and whenever index (which started with zero value but is incremented whenever the temporary array is filled) is of the size of the temporary array, the algorithm includes in the list of combinations. This algorithm uses brute force with O(n2) performance to match, but on the other hand it is scalable and can be used to combine several cities and combinations.
